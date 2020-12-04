@@ -14,13 +14,13 @@ app.use(favicon('public/favicon.ico'))
 const account = require('./table/account')
 
 const hbase = require('hbase')
-// const hclient = hbase({ host: process.argv[3], port: Number(process.argv[4])})
-const hclient = hbase({ host: 'localhost', port: 8070})
+const hclient = hbase({ host: process.argv[3], port: Number(process.argv[4])})
+// const hclient = hbase({ host: 'localhost', port: 8070})
 
 const kafka = require('kafka-node')
-// const kafkaClient = new kafka.KafkaClient({kafkaHost: process.argv[5]})
+const kafkaClient = new kafka.KafkaClient({kafkaHost: process.argv[5]})
 // const kafkaClient = new kafka.KafkaClient({kafkaHost: 'b-1.mpcs53014-kafka.fwx2ly.c4.kafka.us-east-2.amazonaws.com:9092,b-2.mpcs53014-kafka.fwx2ly.c4.kafka.us-east-2.amazonaws.com:9092'})
-// const kafkaProducer = new kafka.Producer(kafkaClient)
+const kafkaProducer = new kafka.Producer(kafkaClient)
 
 const indexPage = require('./pages/index')
 app.use('/', indexPage(hclient))
@@ -40,6 +40,6 @@ app.use('/stats', statsPage(hclient))
 
 
 
-// const port = Number(process.argv[2]);
-const port = 3000
+const port = Number(process.argv[2]);
+// const port = 3000
 app.listen(port);
