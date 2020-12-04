@@ -1,4 +1,5 @@
 const express = require('express')
+const dateformat = require('dateformat')
 
 const stocks = require('../table/stocks')
 
@@ -15,6 +16,7 @@ module.exports = function (hclient, kafkaProducer) {
     router.post('/', function (req, res) {
         const report = {
             stock: req.body['stock'],
+            date: dateformat(new Date(), "yyyy-mm-dd", true),
             price: req.body['price']
         }
         console.log(report)
