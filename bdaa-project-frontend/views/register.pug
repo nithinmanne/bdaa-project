@@ -1,0 +1,33 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='stylesheets/index.css')
+    div.text-center
+        - var mainHeadingClasses = ['h1', 'mb-3', 'font-weight-bold', 'text-danger']
+        h1(class=mainHeadingClasses) BDAA Project
+
+        form(class="form" method="POST" action="/register")
+
+            - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+            h1(class=h1Classes) Sign Up
+
+            // Username
+            label(for="inputUsername" class="sr-only") Username
+            input(type="username" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus)
+
+            // Password
+            label(for="inputPassword" class="sr-only") Password
+            input(type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required)
+
+            // Account Already Exists
+            if exists
+                - var incorrectClasses = ['h5', 'text-danger', 'mb-3', 'font-weight-normal']
+                h1(class=incorrectClasses) Account Already Exists
+
+            // Sign Up Button
+            - var registerbuttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+            button(class=registerbuttonClass type="submit") Sign Up
+
+            // Sign In Button
+            - var loginButtonClass=['btn', 'btn-lg', 'btn-info', 'btn-block'];
+            a(class=loginButtonClass href="/") Sign In

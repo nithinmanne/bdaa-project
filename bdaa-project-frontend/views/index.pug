@@ -1,0 +1,37 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='stylesheets/index.css')
+    div.text-center
+        - var mainHeadingClasses = ['h1', 'mb-3', 'font-weight-bold', 'text-danger']
+        h1(class=mainHeadingClasses) BDAA Project
+
+        form(class="form" method="POST" action="/")
+
+            - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+            h1(class=h1Classes) Sign In
+
+            // Username
+            label(for="inputUsername" class="sr-only") Username
+            input(type="username" name="username" id="inputUsername" class="form-control" placeholder="Username" required autofocus)
+
+            // Password
+            label(for="inputPassword" class="sr-only") Password
+            input(type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required)
+
+            // Incorrect Credentials
+            if incorrect
+                - var incorrectClasses = ['h5', 'text-danger', 'mb-3', 'font-weight-normal']
+                h1(class=incorrectClasses) Incorrect Credentials
+
+            // Sign In Button
+            - var loginButtonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+            button(class=loginButtonClass type="submit") Sign In
+
+            // Register Button
+            - var RegisterButtonClass=['btn', 'btn-lg', 'btn-info', 'btn-block'];
+            a(class=RegisterButtonClass href="/register") Sign Up
+
+            // Manual Submit Button
+            - var manualButtonClass=['btn', 'btn-lg', 'btn-warning', 'btn-block'];
+            a(class=manualButtonClass href="/manual_submit") Manual Submit

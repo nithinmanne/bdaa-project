@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='stylesheets/manual_submit.css')
+    div.text-center
+        - var mainHeadingClasses = ['h1', 'mb-3', 'font-weight-bold', 'text-danger']
+        h1(class=mainHeadingClasses) BDAA Project
+
+        form(class="form" method="POST" action="/manual_submit")
+
+            - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+            h1(class=h1Classes) Enter Latest Details
+
+            // Stock List
+            label(for='inputStock' class="sr-only") Stock
+            select(name="stock" id="inputStock" class="form-control" required)
+                each name, symbol in stock_symbols
+                    option(value=symbol) !{symbol + ' - ' + name}
+
+            // Price
+            label(for="inputPrice" class="sr-only") Closing Price
+            input(type="number" step="0.01" name="price" id="inputPrice" class="form-control" placeholder="Closing Price" required)
+
+            // Incorrect Credentials
+            if success
+                - var successClasses = ['h5', 'text-success', 'mb-3', 'font-weight-normal']
+                h1(class=successClasses) Successfully Submitted
+
+            // Submit Button
+            - var submitbuttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+            button(class=submitbuttonClass type="submit") Submit
+
+            // Back Button
+            - var backButtonClass=['btn', 'btn-lg', 'btn-info', 'btn-block'];
+            a(class=backButtonClass href="/") Back

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='stylesheets/buysell_confirm.css')
+    div.text-center
+        - var mainHeadingClasses = ['h1', 'mb-3', 'font-weight-bold', 'text-danger']
+        h1(class=mainHeadingClasses) BDAA Project
+
+        - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+        h1(class=h1Classes) Welcome, #{username}!
+        - var cashClasses = ['h4', 'mb-3', 'font-weight-normal']
+        h1(class=cashClasses) Buy Page
+        h1(class=cashClasses) Available Cash: #{cash}
+
+
+        form(class="form" method="POST" action="/buy")
+
+            - var h2Classes = ['h4', 'mb-3', 'font-weight-normal']
+            h1(class=h2Classes) #{stock} Price: #{price}
+
+            // Count
+            label(for="inputCount" class="sr-only") Number of Stocks
+            input(type="number" step="1" name="count" id="inputCount" class="form-control" placeholder="Number of Stocks" required)
+
+            input(type="hidden" name="stock" value=stock)
+            input(type="hidden" name="price" value=price)
+            input(type="hidden" name="step" value=2)
+
+            // Submit Button
+            - var submitbuttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+            button(class=submitbuttonClass type="submit") Submit
+
+            // Back Button
+            - var backButtonClass=['btn', 'btn-lg', 'btn-info', 'btn-block'];
+            a(class=backButtonClass href="/buy") Back

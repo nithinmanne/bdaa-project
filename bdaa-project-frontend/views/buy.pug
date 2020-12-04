@@ -1,0 +1,52 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='stylesheets/buysell.css')
+    div.text-center
+        - var mainHeadingClasses = ['h1', 'mb-3', 'font-weight-bold', 'text-danger']
+        h1(class=mainHeadingClasses) BDAA Project
+
+        - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+        h1(class=h1Classes) Welcome, #{username}!
+        - var cashClasses = ['h4', 'mb-3', 'font-weight-normal']
+        h1(class=cashClasses) Buy Page
+        h1(class=cashClasses) Available Cash: #{cash}
+
+        form(class="form" method="POST" action="/buy")
+
+            // Stock List
+            label(for='inputStock' class="sr-only") Stock
+            select(name="stock" id="inputStock" class="form-control" required)
+                each name, symbol in stock_symbols
+                    option(value=symbol) !{symbol + ' - ' + name}
+
+            // Date
+            label(for="inputDate" class="sr-only") Date
+            input(type="date" name="date" id="inputDate" class="form-control" placeholder="Date" required)
+
+            // Success
+            if success
+                - var successClasses = ['h5', 'text-success', 'mb-3', 'font-weight-normal']
+                h1(class=successClasses) #{success}
+            // Error
+            if error
+                - var errorClasses = ['h5', 'text-danger', 'mb-3', 'font-weight-normal']
+                h1(class=errorClasses) #{error}
+
+            input(type="hidden" name="step" value=1)
+
+            // Submit Button
+            - var submitbuttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+            button(class=submitbuttonClass type="submit") Submit
+
+            // Sell Button
+            - var sellButtonClass=['btn', 'btn-lg', 'btn-warning', 'btn-block'];
+            a(class=sellButtonClass href="/sell") Sell
+
+            // Stats Button
+            - var statsButtonClass=['btn', 'btn-lg', 'btn-success', 'btn-block'];
+            a(class=statsButtonClass href="/stats") Stats
+
+            // Log Out Button
+            - var loginButtonClass=['btn', 'btn-lg', 'btn-info', 'btn-block'];
+            a(class=loginButtonClass href="/logout") Log Out

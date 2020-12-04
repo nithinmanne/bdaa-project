@@ -1,0 +1,23 @@
+{
+  "name": "bdaa-project-frontend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Naga Nithin Manne",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "cookie-parser": "*",
+    "dateformat": "*",
+    "express": "*",
+    "hbase": "*",
+    "hbase-rpc-client": "*",
+    "kafka-node": "*",
+    "node-thrift2-hbase": "*",
+    "pug": "*",
+    "serve-favicon": "*"
+  }
+}

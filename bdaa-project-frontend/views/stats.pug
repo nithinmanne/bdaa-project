@@ -1,0 +1,72 @@
+extends layout
+
+block content
+    link(rel='stylesheet', href='stylesheets/stats.css')
+    div.text-center
+        - var mainHeadingClasses = ['h1', 'mb-3', 'font-weight-bold', 'text-danger']
+        h1(class=mainHeadingClasses) BDAA Project
+
+        - var h1Classes = ['h3', 'mb-3', 'font-weight-normal']
+        h1(class=h1Classes) Welcome, #{username}!
+        - var cashClasses = ['h4', 'mb-3', 'font-weight-normal']
+        h1(class=cashClasses) Stats Page
+        h1(class=cashClasses) Available Cash: #{cash}
+
+        form(class="form" method="POST" action="/stats")
+
+            //// Stock List
+            //label(for='inputStock' class="sr-only") Stock
+            //select(name="stock" id="inputStock" class="form-control" required)
+            //    each name, symbol in stock_symbols
+            //        option(value=symbol) !{symbol + ' - ' + name}
+
+            // Date
+            label(for="inputDate" class="sr-only") Date
+            input(type="date" name="date" id="inputDate" class="form-control" placeholder="Date" required)
+
+            // Success
+            if success
+                - var successClasses = ['h5', 'text-success', 'mb-3', 'font-weight-normal']
+                h1(class=successClasses) #{success}
+            // Error
+            if error
+                - var errorClasses = ['h5', 'text-danger', 'mb-3', 'font-weight-normal']
+                h1(class=errorClasses) #{error}
+
+            // Submit Button
+            - var submitbuttonClass=['btn', 'btn-lg', 'btn-primary', 'btn-block'];
+            button(class=submitbuttonClass type="submit") Submit
+
+            - var buysellButtonClass=['btn', 'btn-lg', 'btn-warning', 'btn-block'];
+            // Buy Button
+            a(class=buysellButtonClass href="/buy") Buy
+            // Sell Button
+            a(class=buysellButtonClass href="/sell") Sell
+
+
+            // Log Out Button
+            - var loginButtonClass=['btn', 'btn-lg', 'btn-info', 'btn-block'];
+            a(class=loginButtonClass href="/logout") Log Out
+
+    div(class=['row', 'justify-content-center'])
+        div(class=['col-auto', 'panel', 'panel-default'])
+            table(class=['table', 'table-responsive', 'table-striped', 'table-bordered'])
+                thead(class='thead-dark')
+                    tr()
+                        th(scope='col') Stock Name
+                        th(scope='col') Number Owned
+                        th(scope='col') Latest Value
+                        th(scope='col') Latest Date
+                each elems, key in stats_table
+                    tbody()
+                        tr()
+                            td() #{key}
+                            td() #{elems[0]}
+                            td() #{elems[1]}
+                            td() #{elems[2]}
+                thead()
+                    tr()
+                        td() Total
+                        td() #{total_stocks}
+                        td() #{total_value}
+                        td() -

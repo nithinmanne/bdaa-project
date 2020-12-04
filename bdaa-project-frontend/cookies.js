@@ -1,0 +1,1 @@
+module.exports.user_cookie = 'nithinmanne_project_user'
