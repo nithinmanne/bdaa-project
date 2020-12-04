@@ -17,3 +17,12 @@ http://ec2-3-15-219-66.us-east-2.compute.amazonaws.com:3002/
 
 Run Instructions:
 node app.js <Port> <HBase Host> <HBase Port> <Kafka Brokers>
+
+The submission has 5 folders:
+1. data: The data I used for the batch layer
+2. HQL: Hive scripts for the batch layer
+3. bdaa-project-backend-producer: This gets the data from the internet and pushes to the Kafka stream
+4. bdaa-project-backend-consumer: This gets the data from the Kafka stream and updates tables accordingly.
+5. bdaa-project-frontend: The web server, which uses HBase to maintain accounts and other information.
+
+I used cookies to preserve session info even with a load balancer.
